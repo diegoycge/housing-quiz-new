@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Housing Quiz</h1>
+<form method="post" action="{{ url_for('quiz') }}">
+    <div class="form-group">
+        <label>Are you a Citizen or Legal Permanent Resident of South Africa?</label>
+        <select name="citizen" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Are you legally competent to contract (over the age of 18)?</label>
+        <select name="legal" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Have you ever previously benefited from government housing?</label>
+        <select name="benefit" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Have you ever owned fixed housing?</label>
+        <select name="owned" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Do you fall into any of the following categories: married, habitually cohabitating, have financial dependents, over 60 years old, disabled, or veteran status?</label>
+        <select name="special" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Are you facing imminent homelessness or are already homeless?</label>
+        <select name="homeless" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div id="living-section" class="form-group" style="display: none;">
+        <label>Where do you currently live?</label>
+        <select name="living" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="informal">Informal housing</option>
+            <option value="formal">Formal housing</option>
+        </select>
+    </div>
+    <div id="income-section" class="form-group" style="display: none;">
+        <label>How much does your household earn per month?</label>
+        <select name="income" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            <option value="R0 - R1850">R0 - R1850</option>
+            <option value="R1851 - R3500">R1851 - R3500</option>
+            <option value="R3501 - R22000">R3501 - R22000</option>
+            <option value="R22001 or above">R22001 or above</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    document.querySelector('select[name="homeless"]').addEventListener('change', function() {
+        if (this.value === 'no') {
+            document.getElementById('living-section').style.display = 'block';
+            document.getElementById('income-section').style.display = 'block';
+        } else {
+            document.getElementById('living-section').style.display = 'none';
+            document.getElementById('income-section').style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}
