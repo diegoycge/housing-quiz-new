@@ -22,7 +22,7 @@ def quiz():
             result = "You may qualify for Emergency Housing if you’re facing imminent homelessness."
         else:
             result = "You may qualify for UISP if you’re upgrading an existing informal settlement. Otherwise, you do not qualify for any government housing programme."
-        return render_template('result.html', result=result)
+        return render_template('results.html', result=result)
 
     if not homeless:
         living = request.form['living']
